@@ -17,8 +17,8 @@ type GlobalContextType = {
   setUserId: React.Dispatch<React.SetStateAction<string>>;
   selectedTags: TAG[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TAG[]>>;
-  isLiked: number;
-  setIsLiked: React.Dispatch<React.SetStateAction<number>>;
+  isLiked: boolean;
+  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const GlobalContext = createContext<{
@@ -34,8 +34,8 @@ export const GlobalContext = createContext<{
   setUserId: React.Dispatch<React.SetStateAction<string>>;
   selectedTags: TAG[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TAG[]>>;
-  isLiked: number;
-  setIsLiked: React.Dispatch<React.SetStateAction<number>>;
+  isLiked: boolean;
+  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
 }>(null as unknown as GlobalContextType);
 
 export const GlobalContextProvider: React.FC<PropsWithChildren> = ({
