@@ -21,10 +21,11 @@ type WriteFormType = {
 };
 
 export const writeFormSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  text: z.string(),
+  title: z.string().min(15),
+  description: z.string().min(20),
+  text: z.string().min(50),
   html: z.string(),
+  tags: z.array(z.object({ id: z.string(), name: z.string() })).optional(),
 });
 
 const WriteFormModal = () => {
@@ -98,7 +99,21 @@ const WriteFormModal = () => {
                 {...register("description")}
               />
               <p>{errors.description?.message}</p>
-              <Controller
+              <input
+                className="w-full rounded border border-gray-300 p-2"
+                type="text"
+                id="text"
+                placeholder="Write your blog"
+                {...register("text")}
+              />
+              <input
+                className="w-full rounded border border-gray-300 p-2"
+                type="html"
+                id="html"
+                placeholder="Write your blog"
+                {...register("html")}
+              />
+              {/* <Controller
                 name="html"
                 control={control}
                 render={({ field }) => (
@@ -111,8 +126,8 @@ const WriteFormModal = () => {
                       onChange={(value) => field.onChange(value)}
                     />
                   </div>
-                )}
-              />
+                )} 
+              /> */}
 
               <p>{errors.text?.message}</p>
             </div>
