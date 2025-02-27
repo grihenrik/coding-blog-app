@@ -39,16 +39,11 @@ const PostPage = () => {
         <div className="fixed bottom-10 z-10 flex w-full justify-center gap-2 ">
           <div className="flex items-center rounded-full border border-gray-500 bg-white  px-4 py-3 shadow-2xl">
             <span>
-              <Like
-                post={{
-                  id: post.data?.id ?? "",
-                  likes: post.data?.likes?.length ?? 0,
-                }}
-              />
+              <Like id={post?.data?.id} />
             </span>
             <span className="pl-4">
               <BsChat
-                className="text-2xl"
+                className="cursor-pointer text-2xl"
                 onClick={() =>
                   setIsCommentSidebarOpen(
                     (isCommentSidebarOpen) => !isCommentSidebarOpen
@@ -59,7 +54,7 @@ const PostPage = () => {
           </div>
         </div>
       </div>
-      <CommentSidebar />
+      <CommentSidebar postId={post?.data?.id || ""} />
     </>
   );
 };
