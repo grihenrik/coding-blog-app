@@ -1,16 +1,12 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { trpc } from "../../utils/trpc";
+import { GlobalContext } from "../../contexts/GlobalContextProvider";
 
-interface LikeProps {
-  post: {
-    id: string;
-    likes: number;
-  };
-}
-
-export const Like = ({ post }: LikeProps) => {
+export const Like = ({ ...post }) => {
   const utils = trpc.useUtils();
+
+  const { isLiked, setIsLiked } = useContext(GlobalContext);
 
   const invalidateCurrentPost = useCallback(() => {
     utils.post.readOne.invalidate();
@@ -21,15 +17,16 @@ export const Like = ({ post }: LikeProps) => {
       invalidateCurrentPost();
     },
   });
-
+  console.log("post", post);
   return (
     <div>
-      {post?.likes == 0 ? (
+      {isLiked ? (
         <FcLikePlaceholder
           className=" cursor-pointer text-2xl"
           onClick={() => {
             if (post?.id) {
-              likePost.mutate({ postId: post.id });
+              likePost.mutate({ postId: post?.id });
+              setIsLiked((isLiked: boolean) => !isLiked);
             }
           }}
         ></FcLikePlaceholder>
@@ -38,7 +35,8 @@ export const Like = ({ post }: LikeProps) => {
           className="text-2xl"
           onClick={() => {
             if (post?.id) {
-              likePost.mutate({ postId: post.id });
+              likePost.mutate({ postId: post?.id });
+              setIsLiked((isLiked: boolean) => !isLiked);
             }
           }}
         />
