@@ -1,6 +1,5 @@
 import React from "react";
 import Loading from "../Loading";
-import { Like } from "../Like";
 import Image from "next/image";
 
 interface BlogPostProps {
