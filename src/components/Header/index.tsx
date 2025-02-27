@@ -5,7 +5,7 @@ import { FiEdit, FiLogOut } from "react-icons/fi";
 import { signIn, signOut } from "next-auth/react";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
-import { set } from "zod";
+import Link from "next/link";
 
 type isAuthenticatedType = {
   isAuthenticated: boolean;
@@ -18,7 +18,9 @@ export const Header = ({ isAuthenticated }: isAuthenticatedType) => {
       <div>
         <IoReorderThreeOutline size={30} />
       </div>
-      <div className="text-xl font-thin">Coding Blog App</div>
+      <Link href={"/"} className="cursor-pointer select-none text-xl font-thin">
+        Coding Blog App
+      </Link>
 
       {isAuthenticated ? (
         <div className="flex items-center gap-2">
