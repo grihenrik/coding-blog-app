@@ -3,7 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import { trpc } from "../utils/trpc";
 import Loading from "../components/Loading";
 import { useContext, useState } from "react";
-import BlogPost from "../components/BlogPost";
+import PostSingle from "../components/PostSingle";
 import { Like } from "../components/Like";
 import { BsChat } from "react-icons/bs";
 import { CommentSidebar } from "../components/CommentSidebar";
@@ -24,13 +24,17 @@ const PostPage = () => {
       <MainLayout />
 
       {post.data && (
-        <BlogPost
+        <PostSingle
           post={{
             ...post.data,
             likes: post.data?.likes?.length ?? 0,
             featuredImage: post.data.featuredImage ?? "",
             isLoading: post.isLoading,
             text: post.data.text ?? "",
+            author: {
+              name: post.data.author?.name || "",
+              image: post.data.author?.image || "",
+            },
           }}
         />
       )}
@@ -54,7 +58,7 @@ const PostPage = () => {
           </div>
         </div>
       </div>
-      <CommentSidebar postId={post?.data?.id || ""} />
+      {post.data?.id && <CommentSidebar postId={post.data.id} />}
     </>
   );
 };

@@ -3,6 +3,7 @@
 import React, { createContext, useState } from "react";
 import { type PropsWithChildren } from "react";
 import type { TAG } from "../../types";
+import { trpc } from "../../utils/trpc";
 
 type GlobalContextType = {
   isWriteModalOpen: boolean;
@@ -17,8 +18,8 @@ type GlobalContextType = {
   setUserId: React.Dispatch<React.SetStateAction<string>>;
   selectedTags: TAG[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TAG[]>>;
-  isLiked: boolean;
-  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
+  isLiked: number;
+  setIsLiked: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const GlobalContext = createContext<{
@@ -34,8 +35,8 @@ export const GlobalContext = createContext<{
   setUserId: React.Dispatch<React.SetStateAction<string>>;
   selectedTags: TAG[];
   setSelectedTags: React.Dispatch<React.SetStateAction<TAG[]>>;
-  isLiked: boolean;
-  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
+  isLiked: number;
+  setIsLiked: React.Dispatch<React.SetStateAction<number>>;
 }>(null as unknown as GlobalContextType);
 
 export const GlobalContextProvider: React.FC<PropsWithChildren> = ({
