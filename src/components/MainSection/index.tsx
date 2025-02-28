@@ -2,7 +2,7 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 
 import { HiChevronDown } from "react-icons/hi";
-import { GetPosts } from "../GetPosts";
+import { PostsList } from "../PostsList";
 
 export const MainSection = () => {
   return (
@@ -52,7 +52,7 @@ export const MainSection = () => {
         </div>
 
         {/* Posts here */}
-        <GetPosts />
+        <PostsList />
       </div>
     </>
   );

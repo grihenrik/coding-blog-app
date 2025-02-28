@@ -6,13 +6,23 @@ import { signIn, signOut } from "next-auth/react";
 import { useContext } from "react";
 import { GlobalContext } from "../../contexts/GlobalContextProvider";
 import Link from "next/link";
+import { trpc } from "../../utils/trpc";
+import Avatar from "../Avatar";
+import { set } from "zod";
 
 type isAuthenticatedType = {
   isAuthenticated: boolean;
 };
 
 export const Header = ({ isAuthenticated }: isAuthenticatedType) => {
-  const { isWriteModalOpen, setIsWriteModalOpen } = useContext(GlobalContext);
+  const { isWriteModalOpen, setIsWriteModalOpen, userId, setUserId } =
+    useContext(GlobalContext);
+
+  const user = trpc.user.getCurrentUser.useQuery();
+  // if (user.data?.id) {
+  //   setUserId(user.data.id);
+  // }
+
   return (
     <header className="border-b[1px] flex h-20 flex-row items-center justify-around border-gray-300 bg-gray-100 p-3">
       <div>
@@ -27,7 +37,16 @@ export const Header = ({ isAuthenticated }: isAuthenticatedType) => {
           <div>
             <BsBell size={30} />
           </div>
-          <div className="h-5 w-5 rounded-full bg-gray-600"></div>
+          <div
+            className="h-8 w-8 rounded-full bg-gray-600"
+            onClick={() => alert("UserProfile Clicked" + user.data?.name)}
+          >
+            <Avatar
+              size="m"
+              url={user.data?.image || ""}
+              alt={user.data?.name || ""}
+            />
+          </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsWriteModalOpen(true)}
