@@ -12,6 +12,15 @@ export const readOne = publicProcedure
         description: true,
         text: true,
         featuredImage: true,
+        author: {
+          select: {
+            name: true,
+            image: true,
+          },
+        },
+        createdAt: true,
+        updatedAt: true,
+        slug: true,
         likes: session?.user?.id
           ? { where: { userId: session?.user?.id } }
           : false,
