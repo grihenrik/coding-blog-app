@@ -8,6 +8,7 @@ import { deletePost } from "./post/postBody/deletePost";
 import { updatePost } from "./post/postBody/updatePost";
 import { bookmarkPost } from "./post/bookmarkPost";
 import { postCommentCreate } from "./post/postComment/postCommentCreate";
+import { postCommentGet } from "./post/postComment/postCommentGet";
 import { postCommentUpdate } from "./post/postComment/postCommentUpdate";
 import { postCommentDelete } from "./post/postComment/postCommentDelete";
 import { getReadingList } from "./post/getReadingList";
@@ -21,6 +22,7 @@ export const postRouter = router({
   deletePost,
   updatePost,
   bookmarkPost,
+  postCommentGet,
   postCommentCreate,
   postCommentUpdate,
   postCommentDelete,
